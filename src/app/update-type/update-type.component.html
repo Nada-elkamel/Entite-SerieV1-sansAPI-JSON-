@@ -1,0 +1,17 @@
+<form>
+    <div [hidden]="ajout">
+    <label  class="lead">ID Type</label>
+    <input type="text" [(ngModel)]="type.idType" name="idType" class="form-control w-25">
+    </div>
+    <div>
+    <label *ngIf="authService.isAdmin()" class="lead">Nom Type</label>
+    <input *ngIf="authService.isAdmin()" type="text" [(ngModel)]="type.nomType" name="nomType" class="form-control"
+    placeholder="Entrez un nom de type...">
+    </div>
+    <div class="mt-2">
+        <button *ngIf="authService.isAdmin()" type="submit" [disabled]="!type.nomType" class="btn btn-primary" (click)="saveType()">
+            {{ajout ? 'Ajouter' : 'Modifier'}}
+        </button>
+    </div>
+    </form>
+    

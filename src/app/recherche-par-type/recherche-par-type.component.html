@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label ><i> Types</i> </label>
+        <select class="form-control form-control-lg" id="idType" name="idType"
+        [(ngModel)]="IdType" (change)="onChange()">
+        <option *ngFor="let type of types" value="{{type.idType}}">{{type.nomType}}</option>
+        </select>
+        </div>
+
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+        <thead class="table-dark">
+    <tr> <th class="lead">ID Serie</th><th class="lead">Nom Serie</th>  <th class="lead">Date Diffusion</th> <th class="lead">Langue</th><th class="lead">Type</th><th  class="lead">Supprimer</th><th  class="lead">Modifier</th></tr>
+</thead>
+    <tbody *ngFor="let serie of series">
+        <tr >
+            <td>{{serie.idSerie}}</td>
+            <td>{{serie.nomSerie}}</td>
+            <td>{{serie.dateCreation | date:'dd/MM/yyyy'}}</td>
+            <td>{{serie.langue}}</td>
+            <td>{{serie.type.nomType}}</td>
+            <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerSerie(serie)">Supprimer</a></td>
+            <td><a *ngIf="authService.isAdmin()" class="btn btn-primary" [routerLink]="['/updateSerie',serie.idSerie]">Modifier</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+            
+   
+

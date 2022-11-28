@@ -1,0 +1,36 @@
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label><i>Nom Serie </i></label>
+    <input class="form-control" #searchInput (keyup)="onKeyUp(searchInput.value)" placeholder="Cherhcher Votre Série">
+        </div>
+    </form>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="lead">Id</th>
+                        <th class="lead">Nom</th>
+                        <th class="lead">Date Diffusion</th>
+                        <th class="lead">Langue</th>
+                        <th class="lead">Type</th>
+                        <th class="lead">Supprimer</th>
+                        <th class="lead">Modifier</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let serie of series">
+                    <tr>
+                        <td>{{serie.idSerie}}</td>
+                        <td>{{serie.nomSerie}}</td>
+                        <td>{{serie.dateCreation| date:'dd/MM/yyyy'}}</td>
+                        <td>{{serie.langue }}</td>
+                        <td>{{serie.type.nomType}}</td>
+                        <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="SupprimerSerie(serie)">Supprimer</a></td>
+                        <td><a *ngIf="authService.isAdmin()" class="btn btn-primary" [routerLink]="['/updateSerie',serie.idSerie]">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

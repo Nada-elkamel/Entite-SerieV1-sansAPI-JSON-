@@ -1,0 +1,27 @@
+
+<dd   class="col-sm-9" class="lead"><mark>Liste de Mes Séries préferées</mark></dd>
+
+<div class="container">
+    <div class="card shadow mb-2">
+    <div class="card-body">
+    <table  class="table table-striped">
+    <thead class="table-dark">
+    <tr> <th class="lead">ID Serie</th><th class="lead">Nom</th>  <th class="lead">Date Diffusion</th> <th class="lead">Langue</th><th class="lead">Type</th><th class="lead">Supprimer</th><th class="lead"> Modifier</th></tr>
+</thead>
+    <tbody class="table-light" *ngFor="let serie of series">
+        <tr >
+            <td>{{serie.idSerie}}</td>
+            <td>{{serie.nomSerie}}</td>
+            <td>{{serie.dateCreation | date:'dd/MM/yyyy'}}</td>
+            <td>{{serie.langue}}</td>
+            <td>{{serie.type.nomType}}</td>
+            <td class="lead"> <a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerSerie(serie)">Supprimer</a></td>
+            <td class="lead"><a *ngIf="authService.isAdmin()" class="btn btn-primary" [routerLink]="['/updateSerie',serie.idSerie]">Modifier</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+            
+   
